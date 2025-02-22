@@ -1,12 +1,10 @@
-
-
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function Network() {
+export default function index() {
   return (
     <View>
-      <Text>Network</Text>
+      <Text>index</Text>
     </View>
   )
 }
