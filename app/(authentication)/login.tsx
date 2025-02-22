@@ -15,7 +15,7 @@ import {
   import axios from "axios";
   import AsyncStorage from '@react-native-async-storage/async-storage';
   
-  const HOST = "192.168.160.216";
+  export const HOST = "192.168.160.216";
   
   const login = () => {
     const [email, setEmail] = useState("");
