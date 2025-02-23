@@ -1,11 +1,11 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import jwt_decode from "jwt-decode";
 import { AntDesign, Entypo, Feather } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
 import axios from "axios";
 import moment from "moment";
+import { HOST } from "@/app/(authentication)/login";
 const connections = () => {
   const [connections, setConnections] = useState([]);
 
@@ -13,9 +13,7 @@ const connections = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const token = await AsyncStorage.getItem("authToken");
-      const decodedToken = jwt_decode(token);
-      const userId = decodedToken.userId;
-      setUserId(userId);
+      setUserId(token!);
     };
 
     fetchUser();
@@ -30,7 +28,7 @@ const connections = () => {
   const fetchConnections = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/connections/${userId}`
+        `http://${HOST}:3000/connections/${userId}`
       );
       setConnections(response.data.connections);
     } catch (error) {
