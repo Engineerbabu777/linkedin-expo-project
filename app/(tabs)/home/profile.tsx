@@ -16,7 +16,6 @@ import {
   Ionicons,
   Entypo,
   Feather,
-  FontAwesome,
   AntDesign
 } from "@expo/vector-icons";
 import { HOST } from "@/app/(authentication)/login";
