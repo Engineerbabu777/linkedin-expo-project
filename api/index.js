@@ -202,3 +202,21 @@ app.post("/connection-request", async (req, res) => {
     res.status(500).json({ message: "Error creating connection request" });
   }
 });
+
+//endpoint to show all the connections requests
+app.get("/connection-request/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const user = await User.findById(userId)
+      .populate("connectionRequests", "name email profileImage")
+      .lean();
+
+    const connectionRequests = user.connectionRequests;
+
+    res.json(connectionRequests);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
