@@ -47,6 +47,7 @@ const login = () => {
       AsyncStorage.setItem("authToken", token);
       router.replace("/(tabs)/home/home");
     });
+    console.log("hello")
   };
   return (
     <SafeAreaView

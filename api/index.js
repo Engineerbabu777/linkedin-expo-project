@@ -182,3 +182,23 @@ app.get("/users/:userId", async (req, res) => {
     res.status(500).json({ message: "Error retrieving users" });
   }
 });
+
+
+//send a connection request
+app.post("/connection-request", async (req, res) => {
+  try {
+    const { currentUserId, selectedUserId } = req.body;
+
+    await User.findByIdAndUpdate(selectedUserId, {
+      $push: { connectionRequests: currentUserId },
+    });
+
+    await User.findByIdAndUpdate(currentUserId, {
+      $push: { sentConnectionRequests: selectedUserId },
+    });
+
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).json({ message: "Error creating connection request" });
+  }
+});

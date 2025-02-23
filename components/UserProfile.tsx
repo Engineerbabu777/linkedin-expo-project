@@ -50,7 +50,7 @@ const UserProfile = ({ item, userId }) => {
             borderRadius: 45,
             resizeMode: "cover"
           }}
-          source={{ uri: item?.profileImage }}
+          source={{ uri: item?.profileImage || "https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png"}}
         />
       </View>
 
