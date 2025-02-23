@@ -13,7 +13,7 @@ import axios from "axios";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import UserProfile from "../../../components/UserProfile";
-// import ConnectionRequest from "../../../components/ConnectionRequest";
+import ConnectionRequest from "../../../components/ConnectionRequest";
 import { useRouter } from "expo-router";
 import { HOST } from "@/app/(authentication)/login";
 
@@ -127,7 +127,7 @@ const index = () => {
         style={{ borderColor: "#E0E0E0", borderWidth: 2, marginVertical: 10 }}
       />
 
-      {/* <View>
+      <View>
         {connectionRequests?.map((item, index) => (
           <ConnectionRequest
             item={item}
@@ -137,7 +137,7 @@ const index = () => {
             userId={userId}
           />
         ))}
-      </View> */}
+      </View>
 
       <View style={{ marginHorizontal: 15 }}>
         <View
