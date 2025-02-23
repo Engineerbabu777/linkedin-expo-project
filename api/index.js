@@ -249,3 +249,23 @@ app.post("/connection-request/accept", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+
+//endpoint to fetch all the connections of a user
+app.get("/connections/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    const user = await User.findById(userId)
+      .populate("connections", "name profileImage createdAt")
+      .exec();
+
+    if (!user) {
+      return res.status(404).json({ message: "User is not found" });
+    }
+    res.status(200).json({ connections: user.connections });
+  } catch (error) {
+    console.log("error fetching the connections", error);
+    res.status(500).json({ message: "Error fetching the connections" });
+  }
+});
