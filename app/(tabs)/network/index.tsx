@@ -91,7 +91,7 @@ const index = () => {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
       <Pressable
-      // onPress={() => router.push("/network/connections")}
+      onPress={() => router.push("/network/connections")}
         style={{
           marginTop: 10,
           marginHorizontal: 10,

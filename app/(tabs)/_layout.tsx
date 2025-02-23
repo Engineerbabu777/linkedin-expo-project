@@ -22,7 +22,7 @@ export default function Layout() {
       />
       
       <Tabs.Screen
-        name="network/index"
+        name="network"
         options={{
           tabBarLabel: "network",
           tabBarLabelStyle: { color: "#008E97" },
