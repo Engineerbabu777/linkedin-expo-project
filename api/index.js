@@ -291,3 +291,16 @@ app.post("/create", async (req, res) => {
     res.status(500).json({ message: "Error creating the post" });
   }
 });
+
+
+//endpoint to fetch all the posts
+app.get("/all", async (req, res) => {
+  try {
+    const posts = await Post.find().populate("user", "name profileImage");
+
+    res.status(200).json({ posts });
+  } catch (error) {
+    console.log("error fetching all the posts", error);
+    res.status(500).json({ message: "Error fetching all the posts" });
+  }
+});
