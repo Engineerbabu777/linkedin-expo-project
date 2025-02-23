@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-// import UserProfile from "../../../components/UserProfile";
+import UserProfile from "../../../components/UserProfile";
 // import ConnectionRequest from "../../../components/ConnectionRequest";
 import { useRouter } from "expo-router";
 import { HOST } from "@/app/(authentication)/login";
@@ -171,15 +171,15 @@ const index = () => {
           </Text>
         </View>
       </View>
-      {/* <FlatList
+      <FlatList
         data={users}
         columnWrapperStyle={{ justifyContent: "space-between" }}
         numColumns={2}
         keyExtractor={(item:any) => item?._id}
         renderItem={({ item, key }) => (
-          <UserProfile userId={userId} item={item} key={index} />
+          <UserProfile userId={userId} item={item} key={key} />
         )}
-      /> */}
+      />
     </ScrollView>
   );
 };
