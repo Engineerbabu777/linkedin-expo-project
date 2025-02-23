@@ -18,7 +18,7 @@ const jwt = require("jsonwebtoken");
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then(() => {
     console.log("Connected to MongoDB");
@@ -30,7 +30,6 @@ mongoose
 app.listen(port, () => {
   console.log("Server is running on port 8000");
 });
-
 
 app.post("/register", async (req, res) => {
   try {
@@ -46,7 +45,7 @@ app.post("/register", async (req, res) => {
       name,
       email,
       password,
-      profileImage,
+      profileImage
     });
 
     newUser.verificationToken = crypto.randomBytes(20).toString("hex");
@@ -56,8 +55,7 @@ app.post("/register", async (req, res) => {
     sendVerificationEmail(newUser.email, newUser.verificationToken);
 
     res.status(202).json({
-      message:
-        "Registration successful.Please check your mail for verification",
+      message: "Registration successful.Please check your mail for verification"
     });
   } catch (error) {
     console.log("Error registering user", error);
@@ -70,15 +68,15 @@ const sendVerificationEmail = async (email, verificationToken) => {
     service: "gmail",
     auth: {
       user: "awaismumtaz0099@gmail.com",
-      pass: process.env.PASS,
-    },
+      pass: process.env.PASS
+    }
   });
 
   const mailOptions = {
     from: "linkedin@gmail.com",
     to: email,
     subject: "Email Verification",
-    text: `please click the following link to verify your email : http://localhost:3000/verify/${verificationToken}`,
+    text: `please click the following link to verify your email : http://localhost:3000/verify/${verificationToken}`
   };
 
   try {
@@ -130,7 +128,7 @@ app.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid password" });
     }
 
-    const token = jwt.sign({ userId: user._id }, secretKey);
+    const token = user?._id;
 
     res.status(200).json({ token });
   } catch (error) {

@@ -20,8 +20,9 @@ export default function Layout() {
             ),
         }}
       />
+      
       <Tabs.Screen
-        name="network"
+        name="network/index"
         options={{
           tabBarLabel: "network",
           tabBarLabelStyle: { color: "#008E97" },
@@ -35,7 +36,7 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="post"
+        name="post/index"
         options={{
           tabBarLabel: "Post",
           tabBarLabelStyle: { color: "#008E97" },
