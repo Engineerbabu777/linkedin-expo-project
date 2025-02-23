@@ -220,3 +220,32 @@ app.get("/connection-request/:userId", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+//endpoint to accept a connection request
+app.post("/connection-request/accept", async (req, res) => {
+  try {
+    const { senderId, recepientId } = req.body;
+
+    const sender = await User.findById(senderId);
+    const recepient = await User.findById(recepientId);
+
+    sender.connections.push(recepientId);
+    recepient.connections.push(senderId);
+
+    recepient.connectionRequests = recepient.connectionRequests.filter(
+      (request) => request.toString() !== senderId.toString()
+    );
+
+    sender.sentConnectionRequests = sender.sentConnectionRequests.filter(
+      (request) => request.toString() !== recepientId.toString()
+    );
+
+    await sender.save();
+    await recepient.save();
+
+    res.status(200).json({ message: "Friend request acccepted" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
